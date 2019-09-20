@@ -10,17 +10,68 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
+        
+        <!-- style css -->
+        <style>
+            body{
+                margin:0;
+                padding:0;
+                font-family:sans-serif;
+            }
+            
+            main {
+                padding:1rem;
+            }
+            
+            .main-header {
+                width:100%;
+                /* blue #48ACF0 */
+                background-color:#f24075;
+                height:3.5rem;
+                padding:0 1.5rem;
+                
+            }
+            
+            .main-header__nav {
+                display:flex;
+                height:100%;
+                align-items:center;
+            }
+            
+            .main-header__list-item{
+                list-style:none;
+                margin:0;
+                padding:0;
+                display:flex;
+            }
+            
+            .main-header__item{
+                padding:0;
+                margin:0 1rem;
+            }
+            
+            .main-header__item a {
+                text-decoration:none;
+                color:#ffffff;
+            }
+            
+            .main-header__item a:hover,
+            .main-header__item a:active,
+            .main-header__item a.active {
+                color:#ccc;
+            }
+        </style>
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         
-        <header>
-            <nav>
-                <ul>
-                    <li><a href="/">Shop</a></li>
-                    <li><a href="/add-product">Add Product</a></li>
+        <header class="main-header">
+            <nav class="main-header__nav">
+                <ul class="main-header__list-item">
+                    <li class="main-header__item"><a href="/" class="active">Shop</a></li>
+                    <li class="main-header__item"><a href="/admin/add-product">Add Product</a></li>
                 </ul>
             </nav>
         </header>
