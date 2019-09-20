@@ -9,7 +9,8 @@ const shopRoutes = require('./routes/shop');
 
 app.use(bodyParser.urlencoded({extended:true}));
 
-app.use(adminRoutes);
+//app.use(adminRoutes); //path not filtered
+app.use('/admin', adminRoutes); // path filtered
 
 app.use(shopRoutes);
 
