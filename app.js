@@ -1,15 +1,14 @@
 const path = require('path');
-
 const express = require('express');
 const bodyParser = require('body-parser');
-
-const app = express();
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
+const app = express();
 
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(express.static(path.join(__dirname,'public')));
 
 //app.use(adminRoutes); //path not filtered
 app.use('/admin', adminRoutes); // path filtered
