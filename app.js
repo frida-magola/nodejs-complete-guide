@@ -9,14 +9,20 @@ const shopRoutes = require('./routes/shop');
 
 const app = express();
 
-//handlebars template configuration after importing it above
-app.engine('hbs', expressHbs({
-    layoutDir:'views/layouts/', 
-    defaultLayout:'main-layout',
-    extname:'hbs' // tell handlebars which extension you are using
-}));
-app.set('view engine','hbs');
+//working with ejs template engine in express it does not need to importe like pug 
+app.set('view engine', 'ejs');
 app.set('views','views');
+
+
+
+//handlebars template configuration after importing it above
+// app.engine('hbs', expressHbs({
+//     layoutDir:'views/layouts/', 
+//     defaultLayout:'main-layout',
+//     extname:'hbs' // tell handlebars which extension you are using
+// }));
+// app.set('view engine','hbs');
+// app.set('views','views');
 
 //configuration tell express what template engine must use pug
 // app.set('view engine','pug');
