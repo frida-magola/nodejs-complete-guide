@@ -1,23 +1,39 @@
-const http = require('http');
-
+const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+const expressHbs = require('express-handlebars');
+
+
+const adminData = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
 
 const app = express();
 
+//handlebars template configuration after importing it above
+app.engine('hbs', expressHbs({
+    layoutDir:'views/layouts/', 
+    defaultLayout:'main-layout',
+    extname:'hbs' // tell handlebars which extension you are using
+}));
+app.set('view engine','hbs');
+app.set('views','views');
+
+//configuration tell express what template engine must use pug
+// app.set('view engine','pug');
+// app.set('views','views');
+
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(express.static(path.join(__dirname,'public')));
 
-app.use('/add-product', (req,res,next) => {
-    res.send('<form action="/product" method="POST"><input type="text" name="title"><button>Add Product</button></h1>');
-});
+//app.use(adminRoutes); //path not filtered
+app.use('/admin', adminData.routes); // path filtered
 
-app.post('/product', (req,res,next) => {
-    console.log(req.body);
-    res.redirect('/');
-});
+app.use(shopRoutes);
 
-app.use('/', (req,res,next) => {
-    res.send('<h1>Hello from Express!</h1>');
-});
+//route not found
+app.use((req,res,next) => {
+    // res.status(404).sendFile(path.join(__dirname,'views','404.html'));
+    res.status(404).render('404',{pageTitle:'Page Not Found'})
+})
 
 app.listen(3000);
