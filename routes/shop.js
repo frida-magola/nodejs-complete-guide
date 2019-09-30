@@ -13,7 +13,14 @@ router.get('/', (req,res,next) => {
     const products = adminData.products;
     
     //render the pug template
-    res.render('shop',{prods:products,pageTitle:'Shop',path:'/'});
+    res.render('shop',{
+        prods:products,
+        pageTitle:'Shop',
+        path:'/',
+        hasProducts:products.length > 0, //add for handlebars template engine
+        activeShop: true, //add for activing the menus in handlebars template engine in express
+        productCSS: true, // active the css style here handlebars require 
+    });
 });
 
 module.exports = router;

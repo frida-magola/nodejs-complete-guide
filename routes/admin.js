@@ -17,7 +17,13 @@ router.get('/add-product', (req,res,next) => {
     // res.sendFile(path.join(rootDir,'views','add-product.html'));
     
     //render view with pug template engine
-    res.render('add-product',{pageTitle:'add-product',path:'/admin/add-product'});
+    res.render('add-product',{
+        pageTitle:'add-product',
+        path:'/admin/add-product',
+        activeAddProduct: true, //add for activing the menus in handlebars template engine in express
+        productCSS: true, // active the css style here handlebars require 
+        formCSS: true, // active the css style here handlebars require 
+    });
 });
 
 // /admin/add-product => POST

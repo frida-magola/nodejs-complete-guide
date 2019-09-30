@@ -1,15 +1,26 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+const expressHbs = require('express-handlebars');
+
 
 const adminData = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
 const app = express();
 
-//configuration tell express what template engine must use 
-app.set('view engine','pug');
+//handlebars template configuration after importing it above
+app.engine('hbs', expressHbs({
+    layoutDir:'views/layouts/', 
+    defaultLayout:'main-layout',
+    extname:'hbs' // tell handlebars which extension you are using
+}));
+app.set('view engine','hbs');
 app.set('views','views');
+
+//configuration tell express what template engine must use pug
+// app.set('view engine','pug');
+// app.set('views','views');
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname,'public')));
