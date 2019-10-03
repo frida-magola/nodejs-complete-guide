@@ -17,12 +17,8 @@ exports.postAddProducts = (req,res,next) => {
     
     const product = new Product(null,title,imageUrl,description,price);
     //save the product
-    product.save()
-        .then(() => {
-            res.redirect('/admin/products');
-        })
-        .catch(err => console.log(err)); 
-    
+    product.save(); 
+    res.redirect('/admin/products');
 };
 
 exports.getProducts = (req,res,next) => {
